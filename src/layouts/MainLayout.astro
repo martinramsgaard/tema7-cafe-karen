@@ -1,0 +1,27 @@
+---
+import "../styles/global.css";
+
+const {
+  title = "Café Karen | Karens Minde Kulturhus",
+  description = "Hjemmelavet mad, fællesskab og lokale råvarer i hjertet af Karens Minde.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>{title}</title>
+  </head>
+
+  <body>
+    <slot />
+  </body>
+</html>
