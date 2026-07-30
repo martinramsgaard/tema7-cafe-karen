@@ -1,43 +1,26 @@
-# Astro Starter Kit: Minimal
+# Café Karen – Tema 7
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Et individuelt projekt udviklet som en del af Tema 7 på multimediedesigneruddannelsen på EK.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Webbureau
 
-## 🚀 Project Structure
+Martin Ramsgaard – individuelt projekt
 
-Inside of your Astro project, you'll see the following folders and files:
+## Projektbeskrivelse
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+Projektet er et responsivt redesign af Café Karens side under Karens Minde Kulturhus. Løsningen har fokus på at gøre ugens arrangementer, priser, tidspunkter og kommende menu mere overskuelige og brugervenlige.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Websitet udvikles i Astro med udgangspunkt i en færdig Figma-prototype til desktop og mobil.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Teknologier
 
-Any static assets, like images, can be placed in the `public/` directory.
+- Astro
+- HTML
+- CSS
+- Git og GitHub
+- Netlify
 
-## 🧞 Commands
+## Links
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Live website: https://tema7-cafe-karen.netlify.app
+- GitHub-repository: https://github.com/martinramsgaard/tema7-cafe-karen
