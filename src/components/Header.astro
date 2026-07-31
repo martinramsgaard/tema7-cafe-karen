@@ -1,0 +1,130 @@
+---
+import InstagramIcon from "../assets/icons/instagram.svg";
+import FacebookIcon from "../assets/icons/facebook.svg";
+---
+
+<!-- Det er første rigtige genbrugelige komponent på siden. I stedet for at skrive hele headerens HTML direkte i index.astro, kan vi indsætte den med:
+<Header /> -->
+<header class="site-header">
+  <a class="logo-link" href="/" aria-label="Café Karen – gå til forsiden">
+    <img
+      class="logo"
+      src="/icons/cafe-karen-logo.svg"
+      alt="Café Karen"
+      width="337"
+      height="212"
+    />
+  </a>
+
+  <!-- Café Karen-logoet bruges som et almindeligt <img>-element, fordi vi ikke skal ændre enkelte vektorformers farver eller animationer. 
+   Socialikonerne importeres derimod som SVG-komponenter, så deres farve kan ændres med CSS. -->
+
+  <!-- aria-label forklarer navigationens formål for brugere af skærmlæsere. -->
+
+  <nav class="social-nav" aria-label="Café Karen på sociale medier">
+    <a
+      class="social-link"
+      href="https://www.instagram.com/karens_minde/"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Besøg Café Karen på Instagram"
+    >
+      <InstagramIcon width={34} height={34} aria-hidden="true" />
+    </a>
+
+    <!-- rel="noopener noreferrer" er en sikkerhedsregel til links, der åbner en ny fane. -->
+
+    <!-- aria-hidden="true" er bevidst. Linkets aria-label fortæller allerede, hvad linket gør. Hvis SVG-ikonet også blev læst op, kunne en skærmlæser gentage oplysningerne. -->
+
+    <a
+      class="social-link"
+      href="https://www.facebook.com/KarensMindeKulturhus"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Besøg Karens Minde Kulturhus på Facebook"
+    >
+      <FacebookIcon width={34} height={34} aria-hidden="true" />
+    </a>
+  </nav>
+</header>
+
+<!-- CSS står nederst. Astro gør den automatisk scoped. Det betyder, at .logo, .social-link og de øvrige klasser kun rammer elementer i denne komponent - altså Header.astro.
+ Reglen kommer altså ikke til at gælde andre elementer med klassen .logo osv. i andre komponenter. Vi slipper derfor for at skulle opfinde en masse forskellige klassenavne i modsætning til 
+ en .html fil, hvor .logo normalt ville være global CSS, der kunne ramme alle .logo-elementer på hele siden. 
+ Scoped styling hjælper netop med at undgå én enorm CSS-fil med mange klasser, hvor det bliver svært at se, hvilke regler der hører til hvilke dele af siden.-->
+<style>
+  .site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 13px 12px;
+    background-color: var(--color-brand-dark);
+  }
+  /* display: flex placerer logoet og navigationen ved siden af hinanden. */
+
+  /* align-items: center; 
+  centrerer dem lodret. */
+
+  /* justify-content: space-between;
+  placerer logoet mod venstre og de sociale links mod højre. Det ledige mellemrum tilpasser sig automatisk skærmens bredde. */
+
+  /* width: 100%;
+  gør headeren lige så bred som viewporten. */
+
+  /* padding: 13px 12px;
+  giver:
+  13px luft foroven og forneden
+  12px luft i venstre og højre side */
+
+  .logo-link {
+    display: block;
+  }
+
+  .logo {
+    width: 105px;
+    height: auto;
+  }
+  /* Logoet bliver 105px bredt. height: auto bevarer dets oprindelige proportioner. */
+
+  .social-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .social-link {
+    display: grid;
+    min-width: 44px;
+    min-height: 44px;
+    color: var(--color-white);
+    place-items: center;
+    transition: color 150ms ease;
+  }
+
+  /* Selve linksene er:
+.social-link {
+  display: grid;
+  min-width: 44px;
+  min-height: 44px;
+  place-items: center;
+}
+display: grid og place-items: center centrerer ikonet både vandret og lodret. */
+
+  /* De klikbare områder er mindst 44 × 44px, selvom ikonerne er 34 x 34px. Det gør dem lettere at ramme på en touchskærm. */
+
+  .social-link:hover {
+    color: var(--color-brand-hover);
+  }
+
+  .logo-link:focus-visible,
+  .social-link:focus-visible {
+    outline: 2px solid var(--color-white);
+    outline-offset: 4px;
+  }
+  /* Når en bruger navigerer med tastaturets Tab-tast, får det valgte link en tydelig hvid markering.
+
+:focus-visible betyder, at markeringen primært vises ved tastaturnavigation og normalt ikke ved et almindeligt museklik.
+
+outline-offset: 4px flytter markeringen lidt væk fra elementet, så den ikke ligger oven på grafikken. */
+</style>
