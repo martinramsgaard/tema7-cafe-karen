@@ -1,0 +1,215 @@
+---
+import { Image } from "astro:assets";
+
+import heroImage from "../assets/images/cafe-karen-hero.webp";
+import ArrowIcon from "../assets/icons/arrow.svg";
+import InstagramIcon from "../assets/icons/instagram.svg";
+import FacebookIcon from "../assets/icons/facebook.svg";
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <Image
+    class="hero-image"
+    src={heroImage}
+    alt="Hjemmelavede retter serveret hos Café Karen"
+  />
+  <!-- Vi bruger Astros <Image />, fordi billedet ligger under src/assets/. 
+   Det importeres som et lokalt asset og kan behandles af Astros billedsystem under buildet. -->
+
+  <div class="hero-overlay" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <div class="hero-intro">
+      <h1 id="hero-title">Café Karen</h1>
+
+      <p>
+        Hjemmelavet mad, fællesskab og lokale råvarer i hjertet af Karens Minde.
+        Alle er velkomne.
+      </p>
+
+      <!-- Linket kommer senere til at scrolle ned til sektionen med ugeplanen. -->
+      <a class="hero-cta" href="#ugeplan">
+        <span>Se denne uge</span>
+
+        <ArrowIcon
+          class="hero-arrow"
+          width={12}
+          height={21}
+          aria-hidden="true"
+        />
+      </a>
+    </div>
+
+    <div class="hero-social">
+      <p>
+        Følg os på Instagram & Facebook for opdateringer om nye arrangementer!
+      </p>
+
+      <nav class="hero-social-nav" aria-label="Sociale medier i hero-sektionen">
+        <a
+          class="hero-social-link"
+          href="https://www.instagram.com/karens_minde/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Besøg Café Karen på Instagram"
+        >
+          <InstagramIcon width={34} height={34} aria-hidden="true" />
+        </a>
+
+        <a
+          class="hero-social-link"
+          href="https://www.facebook.com/KarensMindeKulturhus"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Besøg Karens Minde Kulturhus på Facebook"
+        >
+          <FacebookIcon width={34} height={34} aria-hidden="true" />
+        </a>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 400px;
+    overflow: hidden;
+    color: var(--color-brand-light);
+  }
+  /* overflow: hidden;
+  svarer omtrent til Clip content i Figma: det, der falder uden for heroen, skjules. */
+
+  /* Billedet fylder hele heroen og beskæres efter dens format. */
+  .hero-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Gradientlaget ligger oven på billedet, men under teksten. */
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(79, 23, 53, 1) 0%,
+      rgba(79, 23, 53, 0.88) 40%,
+      rgba(93, 29, 63, 0.55) 70%,
+      rgba(93, 29, 63, 0.18) 100%
+    );
+  }
+
+  /* Indholdet placeres foran både billedet og gradienten. */
+  /* Indholdet placeres foran både billedet og gradienten. */
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 400px;
+    padding: 32px 12px 24px;
+  }
+  /* flex-direction: column; 
+  justify-content: space-between;
+  placerer introduktionen øverst og SoMe-området nederst i heroen. */
+
+  .hero-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-intro h1 {
+    color: var(--color-brand-light);
+    font-size: var(--font-size-display);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-heading);
+    text-transform: uppercase;
+  }
+
+  .hero-intro p {
+    max-width: 19rem;
+    margin-top: 8px;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-body);
+  }
+
+  /* CTA'en er et ankerlink, som senere scroller ned til ugeplanen. */
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 10px 8px;
+    border: 2px solid currentColor;
+    color: var(--color-brand-light);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-heading);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 150ms ease;
+  }
+
+  .hero-arrow {
+    display: block;
+    flex-shrink: 0;
+    transform: translateY(-2px);
+  }
+  /* Flytter pilen 2 pixel op og giver en bedre optisk centrering. 
+  Det er ikke en ny layoutmetode, blot en lille visuel korrektion. */
+
+  .hero-cta:hover,
+  .hero-cta:focus-visible {
+    background-color: var(--color-brand-hover);
+  }
+
+  .hero-cta:focus-visible {
+    outline: 2px solid var(--color-brand-light);
+    outline-offset: 4px;
+  }
+
+  /* Teksten står til venstre, mens socialikonerne står samlet til højre. */
+  .hero-social {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 12px;
+  }
+
+  .hero-social > p {
+    max-width: 13rem;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-body);
+  }
+
+  .hero-social-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-social-link {
+    display: grid;
+    min-width: 44px;
+    min-height: 44px;
+    color: var(--color-white);
+    place-items: center;
+    transition: color 150ms ease;
+  }
+
+  .hero-social-link:hover {
+    color: var(--color-brand-hover);
+  }
+
+  .hero-social-link:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
+</style>
