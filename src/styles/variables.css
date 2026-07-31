@@ -1,0 +1,28 @@
+:root {
+    /* Farver */
+    --color-brand-dark: #4a172d;
+    --color-brand-medium: #904a67;
+    --color-brand-hover: #bb6281;
+    --color-brand-soft: #d99faf;
+    --color-brand-light: #efd7d7;
+    --color-white: #ffffff;
+    --color-black: #000000;
+  
+    /* Skriftvægte */
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-bold: 700;
+  
+    /* Mobile-first skriftstørrelser */
+    --font-size-xs: 0.875rem; /* 14px */
+    --font-size-sm: 1rem;     /* 16px */
+    --font-size-md: 1.125rem; /* 18px */
+    --font-size-lg: 1.25rem;  /* 20px */
+    --font-size-xl: 1.5rem;   /* 24px */
+    --font-size-display: 2.5rem; /* 40px */
+  
+    /* Linjehøjder */
+    --line-height-tight: 1.1;
+    --line-height-heading: 1.2;
+    --line-height-body: 1.5;
+  }

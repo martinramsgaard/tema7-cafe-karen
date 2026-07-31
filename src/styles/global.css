@@ -1,0 +1,11 @@
+@import "./reset.css";
+@import "./variables.css";
+@import "./typography.css";
+
+body {
+    min-height: 100vh;
+    font-family: "Proto Grotesk", sans-serif;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-body);
+  }

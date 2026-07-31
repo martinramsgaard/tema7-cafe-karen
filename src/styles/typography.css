@@ -1,0 +1,23 @@
+@font-face {
+    font-family: "Proto Grotesk";
+    src: url("../assets/fonts/protogrotesk-light.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Proto Grotesk";
+    src: url("../assets/fonts/protogrotesk-regular.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Proto Grotesk";
+    src: url("../assets/fonts/protogrotesk-bold.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+  }
