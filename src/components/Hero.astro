@@ -53,7 +53,13 @@ import FacebookIcon from "../assets/icons/facebook.svg";
           rel="noopener noreferrer"
           aria-label="Besøg Café Karen på Instagram"
         >
-          <InstagramIcon width={34} height={34} aria-hidden="true" />
+          <!-- klasse "hero-social-icon" tilføjes for at kunne style dem større til desktop format -->
+          <InstagramIcon
+            class="hero-social-icon"
+            width={34}
+            height={34}
+            aria-hidden="true"
+          />
         </a>
 
         <a
@@ -63,7 +69,13 @@ import FacebookIcon from "../assets/icons/facebook.svg";
           rel="noopener noreferrer"
           aria-label="Besøg Karens Minde Kulturhus på Facebook"
         >
-          <FacebookIcon width={34} height={34} aria-hidden="true" />
+          <!-- klasse "hero-social-icon" tilføjes for at kunne style dem større til desktop format -->
+          <FacebookIcon
+            class="hero-social-icon"
+            width={34}
+            height={34}
+            aria-hidden="true"
+          />
         </a>
       </nav>
     </div>
@@ -211,5 +223,54 @@ import FacebookIcon from "../assets/icons/facebook.svg";
   .hero-social-link:focus-visible {
     outline: 2px solid currentColor;
     outline-offset: 4px;
+  }
+
+  /* Fra 800px tilpasses heroens indhold til større skærme. */
+  @media (min-width: 800px) {
+    .hero,
+    .hero-content {
+      min-height: 500px;
+    }
+
+    .hero-content {
+      width: 100%;
+      max-width: 1300px;
+      margin-inline: auto;
+      padding: 48px 12px 36px;
+    }
+
+    .hero-intro h1 {
+      font-size: 3.5rem; /* 56px */
+    }
+
+    .hero-intro p {
+      max-width: 28rem;
+      font-size: var(--font-size-md); /* 18px */
+    }
+
+    .hero-cta {
+      margin-top: 34px;
+      padding: 12px 10px;
+      font-size: var(--font-size-md); /* 18px */
+    }
+
+    .hero-social > p {
+      max-width: 20rem;
+      font-size: var(--font-size-sm); /* 16px */
+    }
+
+    .hero-social-link {
+      min-width: 52px;
+      min-height: 52px;
+    }
+
+    .hero-social-icon {
+      width: 42px;
+      height: 42px;
+    }
+
+    .hero-social-nav {
+      gap: 12px;
+    }
   }
 </style>

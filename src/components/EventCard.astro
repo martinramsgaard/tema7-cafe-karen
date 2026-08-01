@@ -150,4 +150,13 @@ og så bliver TapasIcon placeret præcis dér, hvor <slot /> står. -->
     color: var(--color-brand-medium);
     place-items: center;
   }
+
+  /* På større skærme får kortenes indhold en stabil minimumshøjde.
+  Den sidste grid-række tager den resterende plads, så pris og ikon bliver placeret nederst. */
+  @media (min-width: 800px) {
+    .event-card-body {
+      min-height: 280px;
+      grid-template-rows: auto auto auto 1fr;
+    }
+  }
 </style>

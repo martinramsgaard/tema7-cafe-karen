@@ -13,59 +13,68 @@ import PizzaIcon from "../assets/icons/pizza.svg";
   id="ugeplan"
   aria-labelledby="weekly-events-title"
 >
-  <h2 id="weekly-events-title">Denne uge i Café Karen</h2>
+  <div class="weekly-events-inner">
+    <h2 id="weekly-events-title">Denne uge i Café Karen</h2>
 
-  <div class="event-list">
-    <EventCard
-      day="Tirsdag"
-      title="Tirsdagstapas"
-      time="kl. 17–19"
-      description="Dagens vegetariske tapasanretning med brød."
-      price="95 kr."
-    >
-      <TapasIcon width={64} height={64} aria-hidden="true" />
-    </EventCard>
+    <div class="event-list">
+      <EventCard
+        day="Tirsdag"
+        title="Tirsdagstapas"
+        time="kl. 17–19"
+        description="Dagens vegetariske tapasanretning med brød."
+        price="95 kr."
+      >
+        <TapasIcon width={64} height={64} aria-hidden="true" />
+      </EventCard>
 
-    <EventCard
-      day="Onsdag"
-      title="Onsdagsgryde"
-      time="kl. 17–19"
-      description="Dagens varme vegetariske gryde med salat og brød."
-      price="95 kr."
-    >
-      <PotIcon width={64} height={64} aria-hidden="true" />
-    </EventCard>
+      <EventCard
+        day="Onsdag"
+        title="Onsdagsgryde"
+        time="kl. 17–19"
+        description="Dagens varme vegetariske gryde med salat og brød."
+        price="95 kr."
+      >
+        <PotIcon width={64} height={64} aria-hidden="true" />
+      </EventCard>
 
-    <EventCard
-      day="Torsdag"
-      title="Fællesspisning"
-      time="kl. 18"
-      description="Fællesspisning for hele huset."
-      price="Voksne: 105 kr. · Børn (0–12 år): 50 kr."
-    >
-      <PeopleIcon width={64} height={64} aria-hidden="true" />
-    </EventCard>
+      <EventCard
+        day="Torsdag"
+        title="Fællesspisning"
+        time="kl. 18"
+        description="Fællesspisning for hele huset."
+        price="Voksne: 105 kr. · Børn (0–12 år): 50 kr."
+      >
+        <PeopleIcon width={64} height={64} aria-hidden="true" />
+      </EventCard>
 
-    <EventCard
-      day="Fredag"
-      title="Fredagspizza"
-      time="kl. 15–20"
-      description="Dagens vegetariske tapasanretning med brød."
-      price="95 kr."
-    >
-      <PizzaIcon width={64} height={64} aria-hidden="true" />
-    </EventCard>
+      <EventCard
+        day="Fredag"
+        title="Fredagspizza"
+        time="kl. 15–20"
+        description="Dagens vegetariske tapasanretning med brød."
+        price="95 kr."
+      >
+        <PizzaIcon width={64} height={64} aria-hidden="true" />
+      </EventCard>
+    </div>
+
+    <!-- Placeholder-link: CTA'en er designet som klikbar, men den endelige destinationsside er ikke implementeret i denne løsning. -->
+    <a class="events-cta" href="#"> Se alle arrangementer </a>
   </div>
-
-  <!-- Placeholder-link: CTA'en er designet som klikbar, men den endelige destinationsside er ikke implementeret i denne løsning. -->
-  <a class="events-cta" href="#"> Se alle arrangementer </a>
 </section>
 
 <style>
   .weekly-events {
-    padding: 24px 12px 32px;
+    padding-block: 24px 32px;
     background-color: var(--color-brand-medium);
     color: var(--color-brand-light);
+  }
+
+  .weekly-events-inner {
+    width: 100%;
+    max-width: 1300px;
+    margin-inline: auto;
+    padding-inline: 12px;
   }
 
   .weekly-events h2 {
@@ -109,5 +118,28 @@ import PizzaIcon from "../assets/icons/pizza.svg";
   .events-cta:focus-visible {
     outline: 2px solid var(--color-brand-light);
     outline-offset: 4px;
+  }
+
+  /* Fra 800px placeres de fire arrangementskort ved siden af hinanden. */
+  @media (min-width: 800px) {
+    .weekly-events {
+      padding-block: 40px 48px;
+    }
+
+    .weekly-events h2 {
+      margin-bottom: 24px;
+      font-size: 2rem;
+    }
+
+    .event-list {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+    /* grid-template-columns: repeat(4, minmax(0, 1fr)); Opretter fire lige brede kolonner. 
+    minmax(0, 1fr) gør dem fleksible, så indholdet bryder i stedet for at presse grid’et ud over containerens bredde. */
+
+    .events-cta {
+      margin-top: 24px;
+    }
   }
 </style>

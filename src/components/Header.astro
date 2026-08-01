@@ -6,46 +6,48 @@ import FacebookIcon from "../assets/icons/facebook.svg";
 <!-- Det er første rigtige genbrugelige komponent på siden. I stedet for at skrive hele headerens HTML direkte i index.astro, kan vi indsætte den med:
 <Header /> -->
 <header class="site-header">
-  <a class="logo-link" href="/" aria-label="Café Karen – gå til forsiden">
-    <img
-      class="logo"
-      src="/icons/cafe-karen-logo.svg"
-      alt="Café Karen"
-      width="337"
-      height="212"
-    />
-  </a>
+  <div class="header-inner">
+    <a class="logo-link" href="/" aria-label="Café Karen – gå til forsiden">
+      <img
+        class="logo"
+        src="/icons/cafe-karen-logo.svg"
+        alt="Café Karen"
+        width="337"
+        height="212"
+      />
+    </a>
 
-  <!-- Café Karen-logoet bruges som et almindeligt <img>-element, fordi vi ikke skal ændre enkelte vektorformers farver eller animationer. 
+    <!-- Café Karen-logoet bruges som et almindeligt <img>-element, fordi vi ikke skal ændre enkelte vektorformers farver eller animationer. 
    Socialikonerne importeres derimod som SVG-komponenter, så deres farve kan ændres med CSS. -->
 
-  <!-- aria-label forklarer navigationens formål for brugere af skærmlæsere. -->
+    <!-- aria-label forklarer navigationens formål for brugere af skærmlæsere. -->
 
-  <nav class="social-nav" aria-label="Café Karen på sociale medier">
-    <a
-      class="social-link"
-      href="https://www.instagram.com/karens_minde/"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Besøg Café Karen på Instagram"
-    >
-      <InstagramIcon width={34} height={34} aria-hidden="true" />
-    </a>
+    <nav class="social-nav" aria-label="Café Karen på sociale medier">
+      <a
+        class="social-link"
+        href="https://www.instagram.com/karens_minde/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Besøg Café Karen på Instagram"
+      >
+        <InstagramIcon width={34} height={34} aria-hidden="true" />
+      </a>
 
-    <!-- rel="noopener noreferrer" er en sikkerhedsregel til links, der åbner en ny fane. -->
+      <!-- rel="noopener noreferrer" er en sikkerhedsregel til links, der åbner en ny fane. -->
 
-    <!-- aria-hidden="true" er bevidst. Linkets aria-label fortæller allerede, hvad linket gør. Hvis SVG-ikonet også blev læst op, kunne en skærmlæser gentage oplysningerne. -->
+      <!-- aria-hidden="true" er bevidst. Linkets aria-label fortæller allerede, hvad linket gør. Hvis SVG-ikonet også blev læst op, kunne en skærmlæser gentage oplysningerne. -->
 
-    <a
-      class="social-link"
-      href="https://www.facebook.com/KarensMindeKulturhus"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Besøg Karens Minde Kulturhus på Facebook"
-    >
-      <FacebookIcon width={34} height={34} aria-hidden="true" />
-    </a>
-  </nav>
+      <a
+        class="social-link"
+        href="https://www.facebook.com/KarensMindeKulturhus"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Besøg Karens Minde Kulturhus på Facebook"
+      >
+        <FacebookIcon width={34} height={34} aria-hidden="true" />
+      </a>
+    </nav>
+  </div>
 </header>
 
 <!-- CSS står nederst. Astro gør den automatisk scoped. Det betyder, at .logo, .social-link og de øvrige klasser kun rammer elementer i denne komponent - altså Header.astro.
@@ -54,12 +56,18 @@ import FacebookIcon from "../assets/icons/facebook.svg";
  Scoped styling hjælper netop med at undgå én enorm CSS-fil med mange klasser, hvor det bliver svært at se, hvilke regler der hører til hvilke dele af siden.-->
 <style>
   .site-header {
+    width: 100%;
+    background-color: var(--color-brand-dark);
+  }
+
+  .header-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    max-width: 1300px;
+    margin-inline: auto;
     padding: 13px 12px;
-    background-color: var(--color-brand-dark);
   }
   /* display: flex placerer logoet og navigationen ved siden af hinanden. */
 
@@ -70,7 +78,10 @@ import FacebookIcon from "../assets/icons/facebook.svg";
   placerer logoet mod venstre og de sociale links mod højre. Det ledige mellemrum tilpasser sig automatisk skærmens bredde. */
 
   /* width: 100%;
-  gør headeren lige så bred som viewporten. */
+  lader headerens indhold fylde den tilgængelige bredde, indtil max-width på 1300px nås. */
+
+  /* max-width: 1300px og margin-inline: auto;
+  begrænser indholdets bredde og centrerer det på store skærme, mens baggrundsfarven fortsat fylder hele viewporten. */
 
   /* padding: 13px 12px;
   giver:
