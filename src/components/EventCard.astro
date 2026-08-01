@@ -1,0 +1,153 @@
+---
+import ClockIcon from "../assets/icons/clock.svg";
+
+const { day, title, time, description, price } = Astro.props;
+---
+
+<!-- WeeklyEvents.astro er hele sektionen, mens EventCard.astro kun er skabelonen for ét arrangement.
+
+Vi importerer derfor EventCard i WeeklyEvents og bruger det fire gange:
+Den samme kortkomponent kan genbruges til alle fire ugedage.
+Tekstindholdet sendes ind som props, mens det forskellige ikon indsættes i komponentens slot. -->
+<article class="event-card">
+  <p class="event-day">{day}</p>
+
+  <div class="event-card-body">
+    <h3>{title}</h3>
+
+    <p class="event-time">
+      <ClockIcon
+        class="event-time-icon"
+        width={17}
+        height={17}
+        aria-hidden="true"
+      />
+
+      <span>{time}</span>
+    </p>
+
+    <p class="event-description">{description}</p>
+
+    <p class="event-price">{price}</p>
+
+    <!-- <slot /> bliver erstattet af det ikon, vi placerer inde i EventCard, når komponenten bruges. -->
+    <!-- <slot /> betyder, at vi senere kan gøre sådan:
+<EventCard ...>
+  <TapasIcon />
+</EventCard>
+og så bliver TapasIcon placeret præcis dér, hvor <slot /> står. -->
+
+    <div class="event-icon" aria-hidden="true">
+      <slot />
+    </div>
+  </div>
+</article>
+
+<style>
+  .event-card {
+    width: 100%;
+    background-color: var(--color-brand-light);
+    color: var(--color-black);
+  }
+
+  /* Ugedagen ligger i sit eget farvede felt øverst på kortet. */
+  .event-day {
+    padding: 8px 12px;
+    background-color: var(--color-brand-soft);
+    color: var(--color-brand-medium);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-heading);
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  /*
+    Kortets indhold bruger to kolonner nederst:
+    teksten bruger den ledige plads, mens ikonet får sin egen 64px-kolonne.
+    */
+  .event-card-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 64px;
+    grid-template-areas:
+      "title title"
+      "time time"
+      "description description"
+      "price icon";
+    column-gap: 12px;
+    row-gap: 6px;
+    padding: 12px;
+  }
+  /* grid-template-columns: minmax(0, 1fr) 64px;
+  opretter to kolonner i .event-card-body: */
+  /* Den anden kolonne er enkel: 64px
+  Den er altid 64 px bred, fordi SVG-ikonernes artboards er 64 × 64 px. */
+  /* Den første kolonne er: minmax(0, 1fr)
+  1fr betyder, at den tager al den resterende plads, efter ikonkolonnen og afstanden mellem kolonnerne er trukket fra. */
+  /* Så den praktiske betydning er:
+  minmax(0, 1fr) / fleksibel tekstkolonne
+  64px / fast ikonkolonne */
+
+  .event-card-body h3 {
+    grid-area: title;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-heading);
+  }
+
+  .event-time {
+    grid-area: time;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--color-brand-medium);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-light);
+    line-height: var(--line-height-body);
+  }
+  /* border-bottom: 1px solid var(--color-brand-medium); og padding-bottom: 6px Giver luft under tidspunktet og tegner en skillelinje før beskrivelsen. */
+
+  .event-time-icon {
+    flex-shrink: 0;
+  }
+  /* flex-shrink: 0 sikrer, at ikonet ikke bliver presset sammen. */
+
+  .event-time span {
+    transform: translateY(3px);
+  }
+  /* Flytter tidspunktsteksten 3px ned, så den flugter bedre optisk med urikonet. */
+
+  .event-description {
+    grid-area: description;
+    margin-top: 6px;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-body);
+  }
+
+  .event-price {
+    grid-area: price;
+    align-self: end;
+    margin-top: 4px;
+    color: var(--color-brand-medium);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-heading);
+  }
+
+  /*
+    currentColor i SVG-filerne betyder, at ikonerne arver denne farve.
+    Deres fælles 64 × 64-artboard giver dem samme placering på alle kort.
+    */
+  .event-icon {
+    grid-area: icon;
+    display: grid;
+    align-self: end;
+    justify-self: end;
+    width: 64px;
+    height: 64px;
+    color: var(--color-brand-medium);
+    place-items: center;
+  }
+</style>

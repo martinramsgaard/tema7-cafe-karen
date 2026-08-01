@@ -1,0 +1,113 @@
+---
+import EventCard from "./EventCard.astro";
+
+import TapasIcon from "../assets/icons/tapas-glasses.svg";
+import PotIcon from "../assets/icons/pot.svg";
+import PeopleIcon from "../assets/icons/people.svg";
+import PizzaIcon from "../assets/icons/pizza.svg";
+---
+
+<!-- Hele sektionen samler overskriften, de fire genbrugelige eventkort og CTA'en. --><!-- id="ugeplan" er destinationen, der scrolles ned til, når brugeren klikker på "SE DENNE UGE" i heroen. -->
+<section
+  class="weekly-events"
+  id="ugeplan"
+  aria-labelledby="weekly-events-title"
+>
+  <h2 id="weekly-events-title">Denne uge i Café Karen</h2>
+
+  <div class="event-list">
+    <EventCard
+      day="Tirsdag"
+      title="Tirsdagstapas"
+      time="kl. 17–19"
+      description="Dagens vegetariske tapasanretning med brød."
+      price="95 kr."
+    >
+      <TapasIcon width={64} height={64} aria-hidden="true" />
+    </EventCard>
+
+    <EventCard
+      day="Onsdag"
+      title="Onsdagsgryde"
+      time="kl. 17–19"
+      description="Dagens varme vegetariske gryde med salat og brød."
+      price="95 kr."
+    >
+      <PotIcon width={64} height={64} aria-hidden="true" />
+    </EventCard>
+
+    <EventCard
+      day="Torsdag"
+      title="Fællesspisning"
+      time="kl. 18"
+      description="Fællesspisning for hele huset."
+      price="Voksne: 105 kr. · Børn (0–12 år): 50 kr."
+    >
+      <PeopleIcon width={64} height={64} aria-hidden="true" />
+    </EventCard>
+
+    <EventCard
+      day="Fredag"
+      title="Fredagspizza"
+      time="kl. 15–20"
+      description="Dagens vegetariske tapasanretning med brød."
+      price="95 kr."
+    >
+      <PizzaIcon width={64} height={64} aria-hidden="true" />
+    </EventCard>
+  </div>
+
+  <!-- Placeholder-link: CTA'en er designet som klikbar, men den endelige destinationsside er ikke implementeret i denne løsning. -->
+  <a class="events-cta" href="#"> Se alle arrangementer </a>
+</section>
+
+<style>
+  .weekly-events {
+    padding: 24px 12px 32px;
+    background-color: var(--color-brand-medium);
+    color: var(--color-brand-light);
+  }
+
+  .weekly-events h2 {
+    margin-bottom: 20px;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-heading);
+    text-transform: uppercase;
+  }
+
+  /* Kortene står i én kolonne på mobil med ens afstand mellem dem. */
+  .event-list {
+    display: grid;
+    gap: 16px;
+  }
+
+  .events-cta {
+    display: block;
+    width: fit-content;
+    margin: 20px auto 0;
+    padding: 10px 12px;
+    border: 2px solid currentColor;
+    color: var(--color-brand-light);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-heading);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 150ms ease;
+  }
+  /* Her gør:
+  width: fit-content;
+  margin: 20px auto 0; 
+  at CTA’en kun bliver så bred som teksten og dens padding, hvorefter den centreres vandret.*/
+
+  .events-cta:hover,
+  .events-cta:focus-visible {
+    background-color: var(--color-brand-hover);
+  }
+
+  .events-cta:focus-visible {
+    outline: 2px solid var(--color-brand-light);
+    outline-offset: 4px;
+  }
+</style>
